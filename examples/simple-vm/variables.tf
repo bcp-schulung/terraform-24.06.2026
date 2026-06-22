@@ -28,9 +28,5 @@ variable "admin_username" {
   default     = "azureuser"
 }
 
-variable "admin_ssh_public_key" {
-  description = "SSH public key for admin access"
-  type        = string
-}
 
 

@@ -4,8 +4,16 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "~> 4.0"
     }
+    tls = {
+      source  = "hashicorp/tls"
+      version = "~> 4.0"
+    }
   }
   required_version = ">= 1.5.0"
+}
+
+resource "tls_private_key" "main" {
+  algorithm = "ED25519"
 }
 
 provider "azurerm" {
@@ -86,7 +94,7 @@ resource "azurerm_linux_virtual_machine" "main" {
 
   admin_ssh_key {
     username   = var.admin_username
-    public_key = var.admin_ssh_public_key
+    public_key = tls_private_key.main.public_key_openssh
   }
 
   os_disk {
