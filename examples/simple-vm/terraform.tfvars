@@ -1,4 +1,5 @@
-resource_group_name = "rg-student-ben-coeppicus"
+prefix              = "demo"
+resource_group_name = "rg-tf-lab"
 vm_name             = "simple-vm"
 vm_size             = "Standard_B1s"
 admin_username      = "azureuser"

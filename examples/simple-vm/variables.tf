@@ -1,3 +1,9 @@
+variable "prefix" {
+  description = "Prefix to prepend to all resource names"
+  type        = string
+  default     = "demo"
+}
+
 variable "resource_group_name" {
   description = "Name of the existing Azure resource group"
   type        = string
