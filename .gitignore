@@ -1,0 +1,36 @@
+# Secrets & credentials
+.env
+script/*-creds.json
+terraform-seminar-credentials.md
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Terraform state & local overrides
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+*.tfvars
+!*.tfvars.example
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+crash.log
+
+# macOS
+.DS_Store
+
+# Editor
+.idea/
+*.swp
+*.swo
