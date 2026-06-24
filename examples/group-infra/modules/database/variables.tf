@@ -25,6 +25,11 @@ variable "subnet_id" {
   description = "ID of the delegated subnet for the PostgreSQL Flexible Server."
 }
 
+variable "vnet_id" {
+  type        = string
+  description = "ID of the virtual network, used to link the private DNS zone."
+}
+
 variable "admin_username" {
   type        = string
   description = "Administrator username for the database server."
