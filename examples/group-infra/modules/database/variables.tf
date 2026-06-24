@@ -34,10 +34,20 @@ variable "admin_username" {
   type        = string
   description = "Administrator username for the database server."
   default     = "pgadmin"
+
+  validation {
+    condition     = length(var.admin_username) > 0 && !contains(["admin", "administrator", "root", "postgres", "azure_superuser"], lower(var.admin_username))
+    error_message = "admin_username must not be empty and must not be a reserved PostgreSQL username (admin, administrator, root, postgres, azure_superuser)."
+  }
 }
 
 variable "admin_password" {
   type        = string
   description = "Administrator password for the database server."
   sensitive   = true
+
+  validation {
+    condition     = length(var.admin_password) >= 12
+    error_message = "admin_password must be at least 12 characters long (Azure requirement)."
+  }
 }

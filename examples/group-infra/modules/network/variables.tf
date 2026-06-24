@@ -1,6 +1,11 @@
 variable "name" {
   type        = string
   description = "Base name used as a prefix for all network resources."
+
+  validation {
+    condition     = length(var.name) > 0 && can(regex("^[a-z0-9-]+$", var.name))
+    error_message = "name must be non-empty and contain only lowercase letters, numbers, and hyphens."
+  }
 }
 
 variable "resource_group_name" {

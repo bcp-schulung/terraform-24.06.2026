@@ -24,6 +24,11 @@ variable "sku" {
   type        = string
   description = "SKU of the public IP and load balancer (Standard or Basic)."
   default     = "Standard"
+
+  validation {
+    condition     = contains(["Standard", "Basic"], var.sku)
+    error_message = "sku must be either 'Standard' or 'Basic'."
+  }
 }
 
 variable "azurerm_public_ip" {

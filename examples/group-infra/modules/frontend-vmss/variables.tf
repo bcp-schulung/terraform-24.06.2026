@@ -46,22 +46,42 @@ variable "instance_count_min" {
   type        = number
   description = "Minimum number of VMSS instances."
   default     = 1
+
+  validation {
+    condition     = var.instance_count_min >= 1
+    error_message = "instance_count_min must be at least 1."
+  }
 }
 
 variable "instance_count_max" {
   type        = number
   description = "Maximum number of VMSS instances."
   default     = 5
+
+  validation {
+    condition     = var.instance_count_max >= 1
+    error_message = "instance_count_max must be at least 1."
+  }
 }
 
 variable "admin_username" {
   type        = string
   description = "Administrator username for the VMSS instances."
   default     = "azureuser"
+
+  validation {
+    condition     = length(var.admin_username) > 0 && !contains(["admin", "administrator", "root"], lower(var.admin_username))
+    error_message = "admin_username must not be empty and must not be a reserved name (admin, administrator, root)."
+  }
 }
 
 variable "admin_password" {
   type        = string
   description = "Administrator password for the VMSS instances."
   sensitive   = true
+
+  validation {
+    condition     = length(var.admin_password) >= 12
+    error_message = "admin_password must be at least 12 characters long (Azure requirement)."
+  }
 }
