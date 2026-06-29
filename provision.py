@@ -35,7 +35,7 @@ import cloudflare as cf_module
 from dotenv import load_dotenv
 from fabric import Connection
 from hcloud import Client as HCloudClient
-from hcloud.firewalls.domain import FirewallRule
+from hcloud.firewalls.domain import FirewallRule, FirewallResource
 from hcloud.images.domain import Image
 from hcloud.locations.domain import Location
 from hcloud.networks.domain import Network
@@ -65,24 +65,34 @@ STUDENTS = [
         "creds":   "student-ben-coeppicus-creds.json",
     },
     {
-        "slug":    "benjamin-griese",
-        "display": "benjamin-griese",
-        "creds":   "student-benjamin-griese-creds.json",
+        "slug":    "simon-scheurle",
+        "display": "simon-scheurle",
+        "creds":   "student-simon-scheurle-creds.json",
     },
     {
-        "slug":    "dirk-puetz",
-        "display": "dirk-pütz",
-        "creds":   "student-dirk-pütz-creds.json",
+        "slug":    "tim-mohoric",
+        "display": "tim-mohoric",
+        "creds":   "student-tim-mohoric-creds.json",
     },
     {
-        "slug":    "joern-kemmesies",
-        "display": "jörn-kemmesies",
-        "creds":   "student-jörn-kemmesies-creds.json",
+        "slug":    "alexander-lehmann",
+        "display": "alexander-lehmann",
+        "creds":   "student-alexander-lehmann-creds.json",
     },
     {
-        "slug":    "steffen-morcinek",
-        "display": "steffen-morcinek",
-        "creds":   "student-steffen-morcinek-creds.json",
+        "slug":    "benedict-sorwat",
+        "display": "benedict-sorwat",
+        "creds":   "student-benedict-sorwat-creds.json",
+    },
+    {
+        "slug":    "nelli-gramlich",
+        "display": "nelli-gramlich",
+        "creds":   "student-nelli-gramlich-creds.json",
+    },
+    {
+        "slug":    "wolfram-schmidt",
+        "display": "wolfram-schmidt",
+        "creds":   "student-wolfram-schmidt-creds.json",
     },
 ]
 
@@ -304,7 +314,7 @@ def provision_hetzner() -> dict[str, str]:
             try:
                 hc.firewalls.apply_to_resources(
                     firewall=fw,
-                    resources=[{"type": "server", "server": {"id": server.id}}],
+                    resources=[FirewallResource(type="server", server=server)],
                 )
                 log(f"  Firewall applied to '{slug}'.")
             except Exception as e:

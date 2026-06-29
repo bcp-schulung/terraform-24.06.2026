@@ -3,10 +3,12 @@ SCOPE="$(az group show -n rg-tf-lab --query id -o tsv | tr -d '\r')"
 
 students=(
   "ben-coeppicus"
-  "benjamin-griese"
-  "dirk-pütz"
-  "jörn-kemmesies"
-  "steffen-morcinek"
+  "simon-scheurle"
+  "tim-mohoric"
+  "alexander-lehmann"
+  "benedict-sorwat"
+  "nelli-gramlich"
+  "wolfram-schmidt"
 )
 
 for s in "${students[@]}"; do
